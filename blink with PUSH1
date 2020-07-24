@@ -1,0 +1,32 @@
+/*
+ * if PUSH1 is pressed the RED LED light, otherwise not
+ */
+
+
+void setup() {
+  // put your setup code here, to run once:
+
+  P1OUT &= ~BIT0; //clear P1.0 (RED_LED)
+
+  P1DIR |= BIT0;  // set P1.0 out
+  P2DIR &= ~BIT3; // set P2.3 (PUSH1) in
+
+  P2REN |= BIT3; // enable resistor at P2.3
+  P2OUT |= BIT3; // set pull-up at P2.3
+
+  
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly: 
+
+  if(!(P2IN & BIT3))   // if the switch is pushed
+  {
+    P1OUT |= BIT0;  // RED LED turns on
+  }else
+  {
+    P1OUT &= ~BIT0; // RED LED turns off
+  }
+  
+}
